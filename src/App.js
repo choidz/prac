@@ -1,23 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
 
 function App() {
+  const [result, setResult] = useState("");
+  const [first, setFirst] = useState(0);
+  const [second, setSecond] = useState(0);
+
+  const add = () => {
+    setResult(first + second);
+  };
+
+  const sub = () => {
+    setResult(first - second);
+  };
+
+  const mul = () => {
+    setResult(first * second);
+  };
+
+  const div = () => {
+    setResult(first / second);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="flex flex-col items-center">
+      <input className="border"
+        type="number"
+        placeholder="Number 1"
+        value={first}
+        onChange={(e) => setFirst(+e.target.value)}
+      />
+      <input className="border"
+        type="number"
+        placeholder="Number 2"
+        value={second}
+        onChange={(e) => setSecond(+e.target.value)}
+      />
+      <div className="flex flex-row gap-4">
+      <button className="px-4 bg-black text-white" onClick={add}>+</button>
+      <button className="px-4 bg-black text-white" onClick={sub}>-</button>
+      <button className="px-4 bg-black text-white" onClick={mul}>*</button>
+      <button className="px-4 bg-black text-white" onClick={div}>/</button>
+      </div>
+      <p>result: {result}</p>
     </div>
   );
 }
